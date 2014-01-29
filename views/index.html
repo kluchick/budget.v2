@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>My budget</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" href="/js/lib/ngQuickDate/ng-quick-date.css"/>
+    <link rel="stylesheet" href="/js/lib/ngQuickDate/ng-quick-date-default-theme.css"/>
+
+    <script type="text/javascript" src="js/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="js/lib/angular/angular-route.js"></script>
+    <script type="text/javascript" src="js/lib/angular/angular-resource.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/filters.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/lib/ngQuickDate/ng-quick-date.js"></script>
+
+</head>
+<body>
+    <div ng-controller='AppCtrl'>
+        <h2>Hello {{name}}</h2>
+        <ul class="menu">
+            <li>
+                <a href="showCharges"> Show charges</a>
+            </li>
+            <li>
+                <a href="addCharge"> Add charge</a>
+            </li>
+        </ul>
+        <p>Last info: {{budget.infoMessage}}</p>
+        <div ng-view></div>
+    </div>
+
+    <!--Charge list page-->
+    <script id="chargeList.html" type="text/ng-template">
+        <input type='text' ng-model='filterName'/>
+        <span>
+            <datepicker ng-model='dateFrom' placeholder='От какого числа' date-format='dd-MM-yyyy' disable-timepicker='true'></datepicker>
+            <datepicker ng-model='dateTo' placeholder='До какого числа' date-format='dd-MM-yyyy' disable-timepicker='true'></datepicker>
+        </span>
+        <label for="categoryId">Категория:</label>
+        <select ng-model="selectedCategory" id="categoryId" ng-change='filterAction()' ng-options="i for i in categories">
+            <option value=""></option>
+        </select>
+        <input type="button" class="filterButton" ng-click="filterAction()" value="Выбрать"/>
+        <p> Всего: {{budget.totals.spend}} </p>
+        <p>  
+            <select ng-model="selectedPeriod" ng-change='changePeriod()' ng-options="i.id+' - '+i.name for i in periods">
+                <option value=""> Текущий период </option>
+            </select>
+        </p>
+
+        <table class="chargeList" ng-show="charges.length>0">
+                <th> Имя</th>
+                <th> Стоимость</th>
+                <th> Категория</th>
+                <th> Счет</th>
+                <th> Дата</th>
+            <tr ng-repeat="charge in charges | filter: filterName">
+                <td class="chargeName">{{charge.Name}}</td>
+                <td class="chargeMoney">{{charge.Money}}</td>
+                <td class="chargeCategory">{{charge.category}}</td>
+                <td class="chargeAccount">{{charge.account}}</td>
+                <td class="chargeDate">{{charge.Date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+            </tr>
+        </table>
+
+
+    </script>
+</body>
+
+</html>

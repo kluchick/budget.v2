@@ -1,0 +1,38 @@
+{
+  "name": "ngQuickDate",
+  "version": "1.2.1",
+  "main": [
+    "dist/ng-quick-date.js",
+    "dist/ng-quick-date.css",
+    "dist/ng-quick-date-default-theme.css"
+  ],
+  "ignore": [
+    "bower_components",
+    "node_modules",
+    "spec",
+    "src",
+    "vendor",
+    "Gruntfile.js",
+    "karma.conf.coffee",
+    "package.json",
+    "screenshot.png"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "~1.2.0",
+    "angular-mocks": "~1.2.0",
+    "jasmine": "~1.3.1",
+    "karma-jasmine": "~0.1.3",
+    "jquery": "~2.0"
+  },
+  "homepage": "https://github.com/adamalbrecht/ngQuickDate",
+  "_release": "1.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.1",
+    "commit": "836fc0a19af8e8445370486c97669b0134c7fa8b"
+  },
+  "_source": "git://github.com/adamalbrecht/ngQuickDate.git",
+  "_target": "1.2.1",
+  "_originalSource": "ngQuickDate"
+}

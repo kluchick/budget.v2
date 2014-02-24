@@ -1,5 +1,13 @@
 /* app css stylesheet */
 
+/* General style */
+body {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Menu */
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -29,6 +37,14 @@
   padding: 0;
 }
 
+/*Info messages*/
+.infoMessage{
+  background-color: green;
+}
+.errorMessage{
+  background-color: red;
+}
+
 /*Charge list*/
 .chargeList{
   /*border: 1px solid #000;*/
@@ -39,7 +55,29 @@
   background-color: #ccc;
   padding: 5px;
 }
-.chargeList td{
-  border: 1px solid #000;
-  padding: 5px;
+
+
+/* Add charge page */
+
+.addChargePage .moneyBlock input{
+  width: 70%;
+  display: inline-block;
+}
+.addChargePage .moneyBlock .btn-info{
+  width: 10%;
+  display: inline-block;
+}
+.addChargePage .moneyBlock .moneybuttons button{
+  position: relative;
+  width: 17%;
+  margin-right: 5%;
+}
+.addChargePage .moneybuttons{
+  width: 90%;
+  margin: 10px auto;
+}
+.addChargePage .moneyBlock .btn-warning{
+  width: 20%;
+  display: block;
+  margin-left: 35%;
 }

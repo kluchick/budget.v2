@@ -15,7 +15,12 @@ config(function ($routeProvider, $locationProvider, ngQuickDateDefaultsProvider)
     when('/showCharges', {
       templateUrl: 'chargeList.html',
       controller: 'ChargeListCtrl'
-    }).
+    })
+    .when('/addCharge', {
+      templateUrl: 'addCharge.html',
+      controller: 'AddChargeCtrl'
+    })
+    .
     otherwise({
       redirectTo: '/showCharges'
     });

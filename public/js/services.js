@@ -20,3 +20,17 @@ budgetServices.factory('Periods', ['$resource',
         	all: {method: 'GET', params:{periodId: 'all'}, isArray: true}
         });
     }]);
+
+budgetServices.factory('Categories', ['$resource', 
+    function($resource){
+        return $resource('api/categories/:categoryId', {}, {
+        	all: {method: 'GET', params:{categoryId: 'all'}, isArray: true}
+        });
+    }]);
+
+budgetServices.factory('Accounts', ['$resource', 
+    function($resource){
+        return $resource('api/accounts/:accountId', {}, {
+        	all: {method: 'GET', params:{accountId: 'all'}, isArray: true}
+        });
+    }]);

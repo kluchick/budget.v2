@@ -3,6 +3,7 @@
 <head>
     <title>My budget</title>
     <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/js/lib/ngQuickDate/ng-quick-date.css"/>
     <link rel="stylesheet" href="/js/lib/ngQuickDate/ng-quick-date-default-theme.css"/>
 
@@ -15,6 +16,9 @@
     <script type="text/javascript" src="js/filters.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
     <script type="text/javascript" src="js/lib/ngQuickDate/ng-quick-date.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
@@ -28,7 +32,7 @@
                 <a href="addCharge"> Add charge</a>
             </li>
         </ul>
-        <p>Last info: {{budget.infoMessage}}</p>
+        <div ng-class="infoMessageClass" id="infoMessage" ng-show="budget.infoMessage">Last info: {{budget.infoMessage}}</div>
         <div ng-view></div>
     </div>
 
@@ -51,7 +55,7 @@
             </select>
         </p>
 
-        <table class="chargeList" ng-show="charges.length>0">
+        <table class="chargeList table table-hover" ng-show="charges.length>0">
                 <th> Имя</th>
                 <th> Стоимость</th>
                 <th> Категория</th>
@@ -68,6 +72,90 @@
 
 
     </script>
+
+    <!--Add charge  page-->
+    <script id="addCharge.html" type="text/ng-template">
+        <div class="addChargePage">
+            <form class="form-horizontal" role="form" ng-submit="addCharge()">
+              <div class="form-group">
+                <label for="name" class="col-lg-2 control-label">Наименование</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="name" ng-model="name" placeholder="Наименование">
+                </div>
+              </div>
+              
+              <div class="form-group moneyBlock">
+                <label for="money" class="col-lg-2 control-label">Сумма</label>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="changeMoney('plus', 500)"> +500 </button>
+                    <button type="button" class="btn btn-info" ng-click="changeMoney('minus', 50)"> - </button>
+                    <input type="text" class="form-control" id="money" ng-model="money" placeholder="Сумма">
+                    <button type="button" class="btn btn-info" ng-click="changeMoney('plus', 50)"> + </button>
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="changeMoney('minus', 500)"> -500 </button>
+                </div>
+                <div class="col-lg-10 moneybuttons">
+                    <button type="button" class="btn btn-success" ng-click="changeMoney('=', 250)"> 250 </button>
+                    <button type="button" class="btn btn-success" ng-click="changeMoney('=', 450)"> 450 </button>
+                    <button type="button" class="btn btn-success" ng-click="changeMoney('=', 1000)"> 1000 </button>
+                    <button type="button" class="btn btn-success" ng-click="changeMoney('=', 2000)"> 2000 </button>
+                </div>
+              </div>
+              
+              <div class="form-group categoryBlock" ng-show="selectedCategory">
+                <label for="category" class="col-lg-2 control-label">Категория</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="category" ng-model="selectedCategory" ng-options="i.Name for i in categories">
+                        <option value="">-- добавить категорию --</option>
+                    </select>                  
+                </div>
+              </div> 
+
+              <div class="form-group addCategoryBlock" ng-show="selectedCategory===null">
+                <label for="addCategoryName" class="col-lg-2 control-label">Новая категоиря</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="addCategoryName" ng-model="addCategoryName" placeholder="Новая категоиря">
+                </div>
+              </div> 
+
+              <div class="form-group accountBlock1">
+                <label for="account" class="col-lg-2 control-label">Счет</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="account" ng-model="selectedAccount" ng-options="i.name for i in accounts">
+                    </select>                  
+                </div>
+              </div> 
+
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="transfer" ng-change="selectedCategory = (transfer)?transferCategory:defaultCategory"> Перевод
+                    </label>
+                  </div>
+                </div>              
+              </div>
+
+              <div class="form-group accountBlock2" ng-show="transfer">
+                <label for="transferAccount" class="col-lg-2 control-label">На счет</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="transferAccount" ng-model="transferAccount" ng-options="i.name for i in accounts">
+                    </select>                  
+                </div>
+              </div> 
+
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <input type="submit" id="submit" class="btn btn-default" value="Добавить"/>
+                </div>
+              </div>
+            </form>
+        </div>
+
+
+
+
+    </script>
+
 </body>
 
 </html>

@@ -45,6 +45,11 @@ if (app.get('env') === 'production') {
 // JSON API
 app.get('/api/charges/:id', api.charges);
 app.get('/api/periods/:id', api.periods);
+app.get('/api/categories/:id', api.categories);
+app.get('/api/accounts/:id', api.accounts);
+
+app.post('/api/charges', api.charges);
+app.post('/api/categories', api.categories);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
